@@ -62,15 +62,15 @@ const images = [
     const ourGallery = document.querySelector(".gallery");
 
     const imagesAll = () => {
-    const ourImages = images.reduce((html, image) => html + 
+    const ourImages = images.map((image) =>  
     `<li class="gallery-item" type="none">
-    <a class="gallery-link" href="${image.original}">
-      <img class="gallery-image"
-      alt = "${image.description}"
-      src = "${image.preview}"
-      data-source="${image.original}"/>
-    </a>
-    </li>`, "")
+      <a class="gallery-link" href="${image.original}">
+        <img class="gallery-image"
+        alt = "${image.description}"
+        src = "${image.preview}"
+        data-source="${image.original}"/>
+      </a>
+    </li>`).join('');
 
     ourGallery.innerHTML = ourImages;
   };
@@ -88,7 +88,8 @@ const images = [
   }
 
 
-  const myModalWindow = basicLightbox.create(`<div class = "modal"><img src="${event.target.dataset.source}"/></div>`, {
+  const myModalWindow = basicLightbox.create(`<div class = "modal">
+    <img src="${event.target.dataset.source}" width="360" height="200"/></div>`, {
 
     onShow: () => {
     document.addEventListener("keydown", onClick)
@@ -101,12 +102,12 @@ const images = [
   });
 
 
-    function onClick(event) {
+  myModalWindow.show();
+
+})
+
+function onClick(event) {
   if (event.key === "Escape") {
     myModalWindow.close();
   }
 }
-
-  myModalWindow.show();
-
-})

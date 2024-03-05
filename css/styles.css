@@ -2,7 +2,7 @@
 .gallery {
     max-width: 1440px;
     margin: 0;
-    padding: 24px 156px;
+    padding: 24px 250px;
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
